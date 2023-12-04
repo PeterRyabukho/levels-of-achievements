@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/levels-of-achievements/static/css/main.e0fe1db7.css",
+    "main.js": "/levels-of-achievements/static/js/main.950aebc2.js",
+    "static/js/787.6b79ca00.chunk.js": "/levels-of-achievements/static/js/787.6b79ca00.chunk.js",
+    "static/media/header.png": "/levels-of-achievements/static/media/header.9ec10c34400e284b6584.png",
+    "static/media/project-logo.svg": "/levels-of-achievements/static/media/project-logo.7c0b398cd00be11eb3bdd4a84c49ec2f.svg",
+    "index.html": "/levels-of-achievements/index.html",
+    "main.e0fe1db7.css.map": "/levels-of-achievements/static/css/main.e0fe1db7.css.map",
+    "main.950aebc2.js.map": "/levels-of-achievements/static/js/main.950aebc2.js.map",
+    "787.6b79ca00.chunk.js.map": "/levels-of-achievements/static/js/787.6b79ca00.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e0fe1db7.css",
+    "static/js/main.950aebc2.js"
+  ]
+}
