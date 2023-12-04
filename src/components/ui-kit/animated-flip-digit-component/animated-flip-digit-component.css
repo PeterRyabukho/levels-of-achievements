@@ -1,0 +1,33 @@
+.animated-flip-digit-container {
+    display: flex;
+  }
+  
+  .animated-flip-digit {
+    width: 20px;
+    height: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    perspective: 1000px;
+    transition: all 0.3s;
+    animation-name: none;
+    animation-duration: 0.5s;
+  }
+  
+  @keyframes flip {
+    0% {
+      transform: rotateX(0);
+    }
+    50% {
+      transform: rotateX(90deg);
+      content: attr(old);
+    }
+    100% {
+      transform: rotateX(0);
+    }
+  }
+  
+  .flip {
+    animation-name: flip;
+    animation-duration: 0.5s;
+  }
+  
