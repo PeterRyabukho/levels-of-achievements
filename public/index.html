@@ -1469,8 +1469,16 @@
                 if (sameTagSiblings.length > 1) {
                     w += ":nth-of-type(" + (sameTagSiblings.indexOf(d) + 1) + ")";
                 }
-                return l + ": " + m.join(" \x3e ")
+                m.unshift(w);
+                d = d.parentNode;
+            } else {
+                break; // Выходим из цикла, если родителя нет
             }
+        }
+    }
+
+    return l + ": " + m.join(" > "); // Возвращаем результат
+}
             function n(d, m) {
                 void 0 === m && (m = []);
                 if (null === d)
@@ -1861,6 +1869,7 @@
     }
 }
 )(window, document);
+
 
   })(window, document, 'script', 'dmpkitdl', '385f6ff2-1c16-45d2-872e-818e294ad8c1', 'static.services.dmpkit');
 </script>
