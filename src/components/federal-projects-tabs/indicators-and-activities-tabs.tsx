@@ -15,6 +15,7 @@ import { ADD_FEDERAL_PROJECT_TAB, SET_SPECIFIC_DEPARTMENTAL_PROJECT, SET_SPECIFI
 import { LevelOfAchievementContext } from '../../context/level-of-achievement-context';
 import { SET_INDICATOR_ONE, SET_INDICATOR_THREE, SET_INDICATOR_TWO } from '../../context/level-of-achievement-context-actions';
 import InWorkChip from '../ui-kit/in-work-chip';
+import { Button, TextField } from '@mui/material';
 
 function a11yProps(index: number) {
   return {
@@ -52,6 +53,15 @@ export function IndicatorsAndActivitiesTabs() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const { state: loaState, dispatch: loaDispatch } = React.useContext(LevelOfAchievementContext)
+  const [event1, setEvent1] = React.useState('');
+  const [event2, setEvent2] = React.useState('');
+
+  const handleSubmit = (event: any) => {
+      event.preventDefault();
+      // Здесь вы можете обработать данные формы
+      console.log('Мероприятие 1:', event1);
+      console.log('Мероприятие 2:', event2);
+  };
 
    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -114,7 +124,27 @@ export function IndicatorsAndActivitiesTabs() {
             />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <InWorkChip />
+        <form onSubmit={handleSubmit}>
+                <TextField
+                    label="Мероприятие-1"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={event1}
+                    onChange={(e) => setEvent1(e.target.value)}
+                />
+                <TextField
+                    label="Мероприятие-2"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={event2}
+                    onChange={(e) => setEvent2(e.target.value)}
+                />
+                <Button type="submit" variant="contained" color="primary">
+                    Отправить
+                </Button>
+            </form>
         </TabPanel>
       </SwipeableViews>
     </Box>
