@@ -31,11 +31,1844 @@
 <script>
   (function (w, d, s, l, h, m) {
       w[l] = w[l] || [];
-      var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s), dl = l != 'dmpkitdl' ? '&l=' + l : '';
-      j.async = true;
-      j.src = '//' + m + '/tm.js?id=' + h + dl;
-      f.parentNode.insertBefore(j, f);
+'use strict';
+(function(G, I) {
+    function za(g, n) {
+        var f = [];
+        f.push("dmpkit_uids[");
+        f.push(g);
+        f.push("]");
+        n && (f.push("["),
+        f.push(n),
+        f.push("]"));
+        return f.join("")
+    }
+    function Aa(g, n, f, q) {
+        var h = ea.get("___dmpkit___")
+          , k = new XMLHttpRequest
+          , t = {
+            dmpkit_cid: "634c9d84-f07a-4720-9390-3c8470973cad",
+            dmpkit_tgt: g,
+            dmpkit_ctid: "385f6ff2-1c16-45d2-872e-818e294ad8c1",
+            dmpkit_evn: n,
+            dmpkit_p: q ? q : "tm"
+        };
+        h && (t[za(10006, 10001)] = h);
+        g = "//dmp.services.dmpkit?" + Object.keys(t).map(function(v) {
+            return encodeURIComponent(v) + "\x3d" + encodeURIComponent(t[v])
+        }).join("\x26");
+        k.withCredentials = !0;
+        k.open("POST", g, !0);
+        k.send(JSON.stringify(f))
+    }
+    function ra(g) {
+        this.value = String(g).toUpperCase()
+    }
+    function la(g) {
+        this.w = g
+    }
+    G._DMPKit = G._DMPKit ? G._DMPKit : {};
+    if (!G._DMPKit["385f6ff2-1c16-45d2-872e-818e294ad8c1"]) {
+        (function(g) {
+            function n(a, b, c=a, e) {
+                var p, A, F;
+                if (b === B)
+                    return b;
+                let u = void 0 !== e ? null === (p = c._$Co) || void 0 === p ? void 0 : p[e] : c._$Cl;
+                p = S(b) ? void 0 : b._$litDirective$;
+                return (null == u ? void 0 : u.constructor) !== p && (null === (A = null == u ? void 0 : u._$AO) || void 0 === A || A.call(u, !1),
+                void 0 === p ? u = void 0 : (u = new p(a),
+                u._$AT(a, c, e)),
+                void 0 !== e ? (null !== (F = c._$Co) && void 0 !== F ? F : c._$Co = [])[e] = u : c._$Cl = u),
+                void 0 !== u && (b = n(a, u._$AS(a, b.values), u, e)),
+                b
+            }
+            function f(a) {
+                return (b, c) => {
+                    void 0 !== c ? (b.constructor.createProperty(c, a),
+                    b = void 0) : b = Ba(a, b);
+                    return b
+                }
+            }
+            const q = window
+              , h = q.ShadowRoot && (void 0 === q.ShadyCSS || q.ShadyCSS.nativeShadow) && "adoptedStyleSheets"in Document.prototype && "replace"in CSSStyleSheet.prototype
+              , k = Symbol()
+              , t = new WeakMap;
+            let v = class {
+                constructor(a, b, c) {
+                    if (this._$cssResult$ = !0,
+                    c !== k)
+                        throw Error("CSSResult is not constructable. Use `unsafeCSS` or `css` instead.");
+                    this.cssText = a;
+                    this.t = b
+                }
+                get styleSheet() {
+                    let a = this.o;
+                    const b = this.t;
+                    if (h && void 0 === a) {
+                        const c = void 0 !== b && 1 === b.length;
+                        c && (a = t.get(b));
+                        void 0 === a && ((this.o = a = new CSSStyleSheet).replaceSync(this.cssText),
+                        c && t.set(b, a))
+                    }
+                    return a
+                }
+                toString() {
+                    return this.cssText
+                }
+            }
+            ;
+            const N = (a, b) => {
+                h ? a.adoptedStyleSheets = b.map(c => c instanceof CSSStyleSheet ? c : c.styleSheet) : b.forEach(c => {
+                    const e = document.createElement("style")
+                      , p = q.litNonce;
+                    void 0 !== p && e.setAttribute("nonce", p);
+                    e.textContent = c.cssText;
+                    a.appendChild(e)
+                }
+                )
+            }
+              , X = h ? a => a : a => {
+                if (a instanceof CSSStyleSheet) {
+                    let b = "";
+                    for (const c of a.cssRules)
+                        b += c.cssText;
+                    a = new v("string" == typeof b ? b : b + "",void 0,k)
+                }
+                return a
+            }
+            ;
+            var P, K = window, H = K.trustedTypes;
+            const L = H ? H.emptyScript : ""
+              , aa = K.reactiveElementPolyfillSupport
+              , Y = {
+                toAttribute(a, b) {
+                    switch (b) {
+                    case Boolean:
+                        a = a ? L : null;
+                        break;
+                    case Object:
+                    case Array:
+                        a = null == a ? a : JSON.stringify(a)
+                    }
+                    return a
+                },
+                fromAttribute(a, b) {
+                    let c = a;
+                    switch (b) {
+                    case Boolean:
+                        c = null !== a;
+                        break;
+                    case Number:
+                        c = null === a ? null : Number(a);
+                        break;
+                    case Object:
+                    case Array:
+                        try {
+                            c = JSON.parse(a)
+                        } catch {
+                            c = null
+                        }
+                    }
+                    return c
+                }
+            }
+              , fa = (a, b) => b !== a && (b == b || a == a)
+              , ha = {
+                attribute: !0,
+                type: String,
+                converter: Y,
+                reflect: !1,
+                hasChanged: fa
+            };
+            H = class extends HTMLElement {
+                constructor() {
+                    super();
+                    this._$Ei = new Map;
+                    this.hasUpdated = this.isUpdatePending = !1;
+                    this._$El = null;
+                    this.u()
+                }
+                static addInitializer(a) {
+                    var b;
+                    this.finalize();
+                    (null !== (b = this.h) && void 0 !== b ? b : this.h = []).push(a)
+                }
+                static get observedAttributes() {
+                    this.finalize();
+                    const a = [];
+                    return this.elementProperties.forEach( (b, c) => {
+                        b = this._$Ep(c, b);
+                        void 0 !== b && (this._$Ev.set(b, c),
+                        a.push(b))
+                    }
+                    ),
+                    a
+                }
+                static createProperty(a, b=ha) {
+                    if (b.state && (b.attribute = !1),
+                    this.finalize(),
+                    this.elementProperties.set(a, b),
+                    !b.noAccessor && !this.prototype.hasOwnProperty(a)) {
+                        const c = "symbol" == typeof a ? Symbol() : "__" + a;
+                        b = this.getPropertyDescriptor(a, c, b);
+                        void 0 !== b && Object.defineProperty(this.prototype, a, b)
+                    }
+                }
+                static getPropertyDescriptor(a, b, c) {
+                    return {
+                        get() {
+                            return this[b]
+                        },
+                        set(e) {
+                            const p = this[a];
+                            this[b] = e;
+                            this.requestUpdate(a, p, c)
+                        },
+                        configurable: !0,
+                        enumerable: !0
+                    }
+                }
+                static getPropertyOptions(a) {
+                    return this.elementProperties.get(a) || ha
+                }
+                static finalize() {
+                    if (this.hasOwnProperty("finalized"))
+                        return !1;
+                    this.finalized = !0;
+                    var a = Object.getPrototypeOf(this);
+                    if (a.finalize(),
+                    void 0 !== a.h && (this.h = [...a.h]),
+                    this.elementProperties = new Map(a.elementProperties),
+                    this._$Ev = new Map,
+                    this.hasOwnProperty("properties")) {
+                        a = this.properties;
+                        const b = [...Object.getOwnPropertyNames(a), ...Object.getOwnPropertySymbols(a)];
+                        for (const c of b)
+                            this.createProperty(c, a[c])
+                    }
+                    return this.elementStyles = this.finalizeStyles(this.styles),
+                    !0
+                }
+                static finalizeStyles(a) {
+                    const b = [];
+                    if (Array.isArray(a)) {
+                        a = new Set(a.flat(1 / 0).reverse());
+                        for (const c of a)
+                            b.unshift(X(c))
+                    } else
+                        void 0 !== a && b.push(X(a));
+                    return b
+                }
+                static _$Ep(a, b) {
+                    b = b.attribute;
+                    return !1 === b ? void 0 : "string" == typeof b ? b : "string" == typeof a ? a.toLowerCase() : void 0
+                }
+                u() {
+                    var a;
+                    this._$E_ = new Promise(b => this.enableUpdating = b);
+                    this._$AL = new Map;
+                    this._$Eg();
+                    this.requestUpdate();
+                    null === (a = this.constructor.h) || void 0 === a || a.forEach(b => b(this))
+                }
+                addController(a) {
+                    var b, c;
+                    (null !== (b = this._$ES) && void 0 !== b ? b : this._$ES = []).push(a);
+                    void 0 !== this.renderRoot && this.isConnected && (null === (c = a.hostConnected) || void 0 === c || c.call(a))
+                }
+                removeController(a) {
+                    var b;
+                    null === (b = this._$ES) || void 0 === b || b.splice(this._$ES.indexOf(a) >>> 0, 1)
+                }
+                _$Eg() {
+                    this.constructor.elementProperties.forEach( (a, b) => {
+                        this.hasOwnProperty(b) && (this._$Ei.set(b, this[b]),
+                        delete this[b])
+                    }
+                    )
+                }
+                createRenderRoot() {
+                    var a;
+                    const b = null !== (a = this.shadowRoot) && void 0 !== a ? a : this.attachShadow(this.constructor.shadowRootOptions);
+                    return N(b, this.constructor.elementStyles),
+                    b
+                }
+                connectedCallback() {
+                    var a;
+                    void 0 === this.renderRoot && (this.renderRoot = this.createRenderRoot());
+                    this.enableUpdating(!0);
+                    null === (a = this._$ES) || void 0 === a || a.forEach(b => {
+                        var c;
+                        return null === (c = b.hostConnected) || void 0 === c ? void 0 : c.call(b)
+                    }
+                    )
+                }
+                enableUpdating(a) {}
+                disconnectedCallback() {
+                    var a;
+                    null === (a = this._$ES) || void 0 === a || a.forEach(b => {
+                        var c;
+                        return null === (c = b.hostDisconnected) || void 0 === c ? void 0 : c.call(b)
+                    }
+                    )
+                }
+                attributeChangedCallback(a, b, c) {
+                    this._$AK(a, c)
+                }
+                _$EO(a, b, c=ha) {
+                    var e;
+                    const p = this.constructor._$Ep(a, c);
+                    if (void 0 !== p && !0 === c.reflect) {
+                        const A = (void 0 !== (null === (e = c.converter) || void 0 === e ? void 0 : e.toAttribute) ? c.converter : Y).toAttribute(b, c.type);
+                        this._$El = a;
+                        null == A ? this.removeAttribute(p) : this.setAttribute(p, A);
+                        this._$El = null
+                    }
+                }
+                _$AK(a, b) {
+                    var c, e = this.constructor;
+                    a = e._$Ev.get(a);
+                    if (void 0 !== a && this._$El !== a) {
+                        e = e.getPropertyOptions(a);
+                        const p = "function" == typeof e.converter ? {
+                            fromAttribute: e.converter
+                        } : void 0 !== (null === (c = e.converter) || void 0 === c ? void 0 : c.fromAttribute) ? e.converter : Y;
+                        this._$El = a;
+                        this[a] = p.fromAttribute(b, e.type);
+                        this._$El = null
+                    }
+                }
+                requestUpdate(a, b, c) {
+                    let e = !0;
+                    void 0 !== a && (((c = c || this.constructor.getPropertyOptions(a)).hasChanged || fa)(this[a], b) ? (this._$AL.has(a) || this._$AL.set(a, b),
+                    !0 === c.reflect && this._$El !== a && (void 0 === this._$EC && (this._$EC = new Map),
+                    this._$EC.set(a, c))) : e = !1);
+                    !this.isUpdatePending && e && (this._$E_ = this._$Ej())
+                }
+                async _$Ej() {
+                    this.isUpdatePending = !0;
+                    try {
+                        await this._$E_
+                    } catch (b) {
+                        Promise.reject(b)
+                    }
+                    const a = this.scheduleUpdate();
+                    return null != a && await a,
+                    !this.isUpdatePending
+                }
+                scheduleUpdate() {
+                    return this.performUpdate()
+                }
+                performUpdate() {
+                    var a;
+                    if (this.isUpdatePending) {
+                        this.hasUpdated;
+                        this._$Ei && (this._$Ei.forEach( (e, p) => this[p] = e),
+                        this._$Ei = void 0);
+                        var b = !1
+                          , c = this._$AL;
+                        try {
+                            (b = this.shouldUpdate(c)) ? (this.willUpdate(c),
+                            null === (a = this._$ES) || void 0 === a || a.forEach(e => {
+                                var p;
+                                return null === (p = e.hostUpdate) || void 0 === p ? void 0 : p.call(e)
+                            }
+                            ),
+                            this.update(c)) : this._$Ek()
+                        } catch (e) {
+                            throw b = !1,
+                            this._$Ek(),
+                            e;
+                        }
+                        b && this._$AE(c)
+                    }
+                }
+                willUpdate(a) {}
+                _$AE(a) {
+                    var b;
+                    null === (b = this._$ES) || void 0 === b || b.forEach(c => {
+                        var e;
+                        return null === (e = c.hostUpdated) || void 0 === e ? void 0 : e.call(c)
+                    }
+                    );
+                    this.hasUpdated || (this.hasUpdated = !0,
+                    this.firstUpdated(a));
+                    this.updated(a)
+                }
+                _$Ek() {
+                    this._$AL = new Map;
+                    this.isUpdatePending = !1
+                }
+                get updateComplete() {
+                    return this.getUpdateComplete()
+                }
+                getUpdateComplete() {
+                    return this._$E_
+                }
+                shouldUpdate(a) {
+                    return !0
+                }
+                update(a) {
+                    void 0 !== this._$EC && (this._$EC.forEach( (b, c) => this._$EO(c, this[c], b)),
+                    this._$EC = void 0);
+                    this._$Ek()
+                }
+                updated(a) {}
+                firstUpdated(a) {}
+            }
+            ;
+            H.finalized = !0;
+            H.elementProperties = new Map;
+            H.elementStyles = [];
+            H.shadowRootOptions = {
+                mode: "open"
+            };
+            null == aa || aa({
+                ReactiveElement: H
+            });
+            (null !== (P = K.reactiveElementVersions) && void 0 !== P ? P : K.reactiveElementVersions = []).push("1.6.1");
+            var V;
+            P = window;
+            const Q = P.trustedTypes
+              , ma = Q ? Q.createPolicy("lit-html", {
+                createHTML: a => a
+            }) : void 0
+              , M = `lit$${(Math.random() + "").slice(9)}$`
+              , ia = "?" + M
+              , na = `<${ia}>`
+              , T = document
+              , W = (a="") => T.createComment(a)
+              , S = a => null === a || "object" != typeof a && "function" != typeof a
+              , d = Array.isArray
+              , m = /<(?:(!--|\/[^a-zA-Z])|(\/?[a-zA-Z][^>\s]*)|(\/?$))/g
+              , l = /--\x3e/g
+              , r = />/g
+              , w = RegExp("\x3e|[ \t\n\f\r](?:([^\\s\"'\x3e\x3d/]+)([ \t\n\f\r]*\x3d[ \t\n\f\r]*(?:[^ \t\n\f\r\"'`\x3c\x3e\x3d]|(\"|')|))|$)", "g")
+              , D = /'/g
+              , x = /"/g
+              , C = /^(?:script|style|textarea|title)$/i
+              , O = (a => (b, ...c) => ({
+                _$litType$: a,
+                strings: b,
+                values: c
+            }))(1)
+              , B = Symbol.for("lit-noChange")
+              , y = Symbol.for("lit-nothing")
+              , ja = new WeakMap
+              , ba = T.createTreeWalker(T, 129, null, !1);
+            class oa {
+                constructor({strings: a, _$litType$: b}, c) {
+                    this.parts = [];
+                    let e = 0
+                      , p = 0;
+                    const A = a.length - 1
+                      , F = this.parts;
+                    var u = a.length - 1
+                      , z = [];
+                    let sa, wa = 2 === b ? "\x3csvg\x3e" : "", E = m;
+                    for (let R = 0; R < u; R++) {
+                        const ca = a[R];
+                        let xa, J, Z = -1;
+                        for (var da = 0; da < ca.length && (E.lastIndex = da,
+                        J = E.exec(ca),
+                        null !== J); )
+                            da = E.lastIndex,
+                            E === m ? "!--" === J[1] ? E = l : void 0 !== J[1] ? E = r : void 0 !== J[2] ? (C.test(J[2]) && (sa = RegExp("\x3c/" + J[2], "g")),
+                            E = w) : void 0 !== J[3] && (E = w) : E === w ? "\x3e" === J[0] ? (E = sa ?? m,
+                            Z = -1) : void 0 === J[1] ? Z = -2 : (Z = E.lastIndex - J[2].length,
+                            xa = J[1],
+                            E = void 0 === J[3] ? w : '"' === J[3] ? x : D) : E === x || E === D ? E = w : E === l || E === r ? E = m : (E = w,
+                            sa = void 0);
+                        da = E === w && a[R + 1].startsWith("/\x3e") ? " " : "";
+                        wa += E === m ? ca + na : 0 <= Z ? (z.push(xa),
+                        ca.slice(0, Z) + "$lit$" + ca.slice(Z) + M + da) : ca + M + (-2 === Z ? (z.push(void 0),
+                        R) : da)
+                    }
+                    u = wa + (a[u] || "\x3c?\x3e") + (2 === b ? "\x3c/svg\x3e" : "");
+                    if (!Array.isArray(a) || !a.hasOwnProperty("raw"))
+                        throw Error("invalid template strings array");
+                    a = [void 0 !== ma ? ma.createHTML(u) : u, z];
+                    const [Ca,Da] = a;
+                    if (this.el = oa.createElement(Ca, c),
+                    ba.currentNode = this.el.content,
+                    2 === b)
+                        b = this.el.content,
+                        c = b.firstChild,
+                        c.remove(),
+                        b.append(...c.childNodes);
+                    for (; null !== (b = ba.nextNode()) && F.length < A; ) {
+                        if (1 === b.nodeType) {
+                            if (b.hasAttributes()) {
+                                c = [];
+                                for (const R of b.getAttributeNames())
+                                    if (R.endsWith("$lit$") || R.startsWith(M))
+                                        z = Da[p++],
+                                        (c.push(R),
+                                        void 0 !== z) ? (a = b.getAttribute(z.toLowerCase() + "$lit$").split(M),
+                                        z = /([.?@])?(.*)/.exec(z),
+                                        F.push({
+                                            type: 1,
+                                            index: e,
+                                            name: z[2],
+                                            strings: a,
+                                            ctor: "." === z[1] ? Ea : "?" === z[1] ? Fa : "@" === z[1] ? Ga : pa
+                                        })) : F.push({
+                                            type: 6,
+                                            index: e
+                                        });
+                                for (const R of c)
+                                    b.removeAttribute(R)
+                            }
+                            if (C.test(b.tagName) && (c = b.textContent.split(M),
+                            a = c.length - 1,
+                            0 < a)) {
+                                b.textContent = Q ? Q.emptyScript : "";
+                                for (z = 0; z < a; z++)
+                                    b.append(c[z], W()),
+                                    ba.nextNode(),
+                                    F.push({
+                                        type: 2,
+                                        index: ++e
+                                    });
+                                b.append(c[a], W())
+                            }
+                        } else if (8 === b.nodeType)
+                            if (b.data === ia)
+                                F.push({
+                                    type: 2,
+                                    index: e
+                                });
+                            else
+                                for (c = -1; -1 !== (c = b.data.indexOf(M, c + 1)); )
+                                    F.push({
+                                        type: 7,
+                                        index: e
+                                    }),
+                                    c += M.length - 1;
+                        e++
+                    }
+                }
+                static createElement(a, b) {
+                    b = T.createElement("template");
+                    return b.innerHTML = a,
+                    b
+                }
+            }
+            class Ha {
+                constructor(a, b) {
+                    this.u = [];
+                    this._$AN = void 0;
+                    this._$AD = a;
+                    this._$AM = b
+                }
+                get parentNode() {
+                    return this._$AM.parentNode
+                }
+                get _$AU() {
+                    return this._$AM._$AU
+                }
+                v(a) {
+                    var b;
+                    const {el: {content: c}, parts: e} = this._$AD
+                      , p = (null !== (b = null == a ? void 0 : a.creationScope) && void 0 !== b ? b : T).importNode(c, !0);
+                    ba.currentNode = p;
+                    b = ba.nextNode();
+                    let A = 0
+                      , F = 0
+                      , u = e[0];
+                    for (; void 0 !== u; ) {
+                        if (A === u.index) {
+                            let z;
+                            2 === u.type ? z = new qa(b,b.nextSibling,this,a) : 1 === u.type ? z = new u.ctor(b,u.name,u.strings,this,a) : 6 === u.type && (z = new Ia(b,this,a));
+                            this.u.push(z);
+                            u = e[++F]
+                        }
+                        A !== (null == u ? void 0 : u.index) && (b = ba.nextNode(),
+                        A++)
+                    }
+                    return p
+                }
+                p(a) {
+                    let b = 0;
+                    for (const c of this.u)
+                        void 0 !== c && (void 0 !== c.strings ? (c._$AI(a, c, b),
+                        b += c.strings.length - 2) : c._$AI(a[b])),
+                        b++
+                }
+            }
+            class qa {
+                constructor(a, b, c, e) {
+                    var p;
+                    this.type = 2;
+                    this._$AH = y;
+                    this._$AN = void 0;
+                    this._$AA = a;
+                    this._$AB = b;
+                    this._$AM = c;
+                    this.options = e;
+                    this._$Cm = null === (p = null == e ? void 0 : e.isConnected) || void 0 === p || p
+                }
+                get _$AU() {
+                    var a, b;
+                    return null !== (b = null === (a = this._$AM) || void 0 === a ? void 0 : a._$AU) && void 0 !== b ? b : this._$Cm
+                }
+                get parentNode() {
+                    let a = this._$AA.parentNode;
+                    const b = this._$AM;
+                    return void 0 !== b && 11 === a.nodeType && (a = b.parentNode),
+                    a
+                }
+                get startNode() {
+                    return this._$AA
+                }
+                get endNode() {
+                    return this._$AB
+                }
+                _$AI(a, b=this) {
+                    a = n(this, a, b);
+                    S(a) ? a === y || null == a || "" === a ? (this._$AH !== y && this._$AR(),
+                    this._$AH = y) : a !== this._$AH && a !== B && this.g(a) : void 0 !== a._$litType$ ? this.$(a) : void 0 !== a.nodeType ? this.T(a) : (b = a,
+                    d(b) || "function" == typeof (null == b ? void 0 : b[Symbol.iterator]) ? this.k(a) : this.g(a))
+                }
+                O(a, b=this._$AB) {
+                    return this._$AA.parentNode.insertBefore(a, b)
+                }
+                T(a) {
+                    this._$AH !== a && (this._$AR(),
+                    this._$AH = this.O(a))
+                }
+                g(a) {
+                    this._$AH !== y && S(this._$AH) ? this._$AA.nextSibling.data = a : this.T(T.createTextNode(a));
+                    this._$AH = a
+                }
+                $(a) {
+                    var b;
+                    const {values: c, _$litType$: e} = a;
+                    a = "number" == typeof e ? this._$AC(a) : (void 0 === e.el && (e.el = oa.createElement(e.h, this.options)),
+                    e);
+                    (null === (b = this._$AH) || void 0 === b ? void 0 : b._$AD) === a ? this._$AH.p(c) : (b = new Ha(a,this),
+                    a = b.v(this.options),
+                    b.p(c),
+                    this.T(a),
+                    this._$AH = b)
+                }
+                _$AC(a) {
+                    let b = ja.get(a.strings);
+                    return void 0 === b && ja.set(a.strings, b = new oa(a)),
+                    b
+                }
+                k(a) {
+                    d(this._$AH) || (this._$AH = [],
+                    this._$AR());
+                    const b = this._$AH;
+                    let c, e = 0;
+                    for (const p of a)
+                        e === b.length ? b.push(c = new qa(this.O(W()),this.O(W()),this,this.options)) : c = b[e],
+                        c._$AI(p),
+                        e++;
+                    e < b.length && (this._$AR(c && c._$AB.nextSibling, e),
+                    b.length = e)
+                }
+                _$AR(a=this._$AA.nextSibling, b) {
+                    var c;
+                    for (null === (c = this._$AP) || void 0 === c || c.call(this, !1, !0, b); a && a !== this._$AB; )
+                        b = a.nextSibling,
+                        a.remove(),
+                        a = b
+                }
+                setConnected(a) {
+                    var b;
+                    void 0 === this._$AM && (this._$Cm = a,
+                    null === (b = this._$AP) || void 0 === b || b.call(this, a))
+                }
+            }
+            class pa {
+                constructor(a, b, c, e, p) {
+                    this.type = 1;
+                    this._$AH = y;
+                    this._$AN = void 0;
+                    this.element = a;
+                    this.name = b;
+                    this._$AM = e;
+                    this.options = p;
+                    2 < c.length || "" !== c[0] || "" !== c[1] ? (this._$AH = Array(c.length - 1).fill(new String),
+                    this.strings = c) : this._$AH = y
+                }
+                get tagName() {
+                    return this.element.tagName
+                }
+                get _$AU() {
+                    return this._$AM._$AU
+                }
+                _$AI(a, b=this, c, e) {
+                    const p = this.strings;
+                    let A = !1;
+                    if (void 0 === p)
+                        a = n(this, a, b, 0),
+                        (A = !S(a) || a !== this._$AH && a !== B) && (this._$AH = a);
+                    else {
+                        const F = a;
+                        let u, z;
+                        a = p[0];
+                        for (u = 0; u < p.length - 1; u++)
+                            z = n(this, F[c + u], b, u),
+                            z === B && (z = this._$AH[u]),
+                            A ||= !S(z) || z !== this._$AH[u],
+                            z === y ? a = y : a !== y && (a += (z ?? "") + p[u + 1]),
+                            this._$AH[u] = z
+                    }
+                    A && !e && this.j(a)
+                }
+                j(a) {
+                    a === y ? this.element.removeAttribute(this.name) : this.element.setAttribute(this.name, a ?? "")
+                }
+            }
+            class Ea extends pa {
+                constructor() {
+                    super(...arguments);
+                    this.type = 3
+                }
+                j(a) {
+                    this.element[this.name] = a === y ? void 0 : a
+                }
+            }
+            const Ja = Q ? Q.emptyScript : "";
+            class Fa extends pa {
+                constructor() {
+                    super(...arguments);
+                    this.type = 4
+                }
+                j(a) {
+                    a && a !== y ? this.element.setAttribute(this.name, Ja) : this.element.removeAttribute(this.name)
+                }
+            }
+            class Ga extends pa {
+                constructor(a, b, c, e, p) {
+                    super(a, b, c, e, p);
+                    this.type = 5
+                }
+                _$AI(a, b=this) {
+                    var c;
+                    if ((a = null !== (c = n(this, a, b, 0)) && void 0 !== c ? c : y) !== B) {
+                        b = this._$AH;
+                        c = a === y && b !== y || a.capture !== b.capture || a.once !== b.once || a.passive !== b.passive;
+                        var e = a !== y && (b === y || c);
+                        c && this.element.removeEventListener(this.name, this, b);
+                        e && this.element.addEventListener(this.name, this, a);
+                        this._$AH = a
+                    }
+                }
+                handleEvent(a) {
+                    var b, c;
+                    "function" == typeof this._$AH ? this._$AH.call(null !== (c = null === (b = this.options) || void 0 === b ? void 0 : b.host) && void 0 !== c ? c : this.element, a) : this._$AH.handleEvent(a)
+                }
+            }
+            class Ia {
+                constructor(a, b, c) {
+                    this.element = a;
+                    this.type = 6;
+                    this._$AN = void 0;
+                    this._$AM = b;
+                    this.options = c
+                }
+                get _$AU() {
+                    return this._$AM._$AU
+                }
+                _$AI(a) {
+                    n(this, a)
+                }
+            }
+            K = P.litHtmlPolyfillSupport;
+            null == K || K(oa, qa);
+            (null !== (V = P.litHtmlVersions) && void 0 !== V ? V : P.litHtmlVersions = []).push("2.6.1");
+            var ta, U;
+            class ka extends H {
+                constructor() {
+                    super(...arguments);
+                    this.renderOptions = {
+                        host: this
+                    };
+                    this._$Do = void 0
+                }
+                createRenderRoot() {
+                    var a, b;
+                    const c = super.createRenderRoot();
+                    return null !== (a = (b = this.renderOptions).renderBefore) && void 0 !== a || (b.renderBefore = c.firstChild),
+                    c
+                }
+                update(a) {
+                    const b = this.render();
+                    this.hasUpdated || (this.renderOptions.isConnected = this.isConnected);
+                    super.update(a);
+                    a = this.renderRoot;
+                    var c = this.renderOptions, e, p;
+                    const A = null !== (e = null == c ? void 0 : c.renderBefore) && void 0 !== e ? e : a;
+                    e = A._$litPart$;
+                    void 0 === e && (e = null !== (p = null == c ? void 0 : c.renderBefore) && void 0 !== p ? p : null,
+                    A._$litPart$ = e = new qa(a.insertBefore(W(), e),e,void 0,c ?? {}));
+                    this._$Do = (e._$AI(b),
+                    e)
+                }
+                connectedCallback() {
+                    var a;
+                    super.connectedCallback();
+                    null === (a = this._$Do) || void 0 === a || a.setConnected(!0)
+                }
+                disconnectedCallback() {
+                    var a;
+                    super.disconnectedCallback();
+                    null === (a = this._$Do) || void 0 === a || a.setConnected(!1)
+                }
+                render() {
+                    return B
+                }
+            }
+            ka.finalized = !0;
+            ka._$litElement$ = !0;
+            null === (ta = globalThis.litElementHydrateSupport) || void 0 === ta || ta.call(globalThis, {
+                LitElement: ka
+            });
+            V = globalThis.litElementPolyfillSupport;
+            null == V || V({
+                LitElement: ka
+            });
+            (null !== (U = globalThis.litElementVersions) && void 0 !== U ? U : globalThis.litElementVersions = []).push("3.2.2");
+            const Ba = (a, b) => "method" !== b.kind || !b.descriptor || "value"in b.descriptor ? {
+                kind: "field",
+                key: Symbol(),
+                placement: "own",
+                descriptor: {},
+                originalKey: b.key,
+                initializer() {
+                    "function" == typeof b.initializer && (this[b.key] = b.initializer.call(this))
+                },
+                finisher(c) {
+                    c.createProperty(b.key, a)
+                }
+            } : {
+                ...b,
+                finisher(c) {
+                    c.createProperty(b.key, a)
+                }
+            };
+            var ua;
+            null != (null === (ua = window.HTMLSlotElement) || void 0 === ua ? void 0 : ua.prototype.assignedElements);
+            var Ka = Object.defineProperty
+              , La = Object.getOwnPropertyDescriptor;
+            U = (a, b, c, e) => {
+                for (var p = 1 < e ? void 0 : e ? La(b, c) : b, A = a.length - 1, F; 0 <= A; A--)
+                    (F = a[A]) && (p = (e ? F(b, c, p) : F(p)) || p);
+                return e && p && Ka(b, c, p),
+                p
+            }
+            ;
+            return g.CDJTmPreviewBadgeElement = class extends ka {
+                constructor() {
+                    super(...arguments);
+                    this.tcPreviewKey = "tc_preview";
+                    this.hasPreviewLocalStorage = !!localStorage.getItem(this.tcPreviewKey);
+                    this.hasPreviewUrlParam = !!this._getPreviewUrlParam();
+                    this.showPreviewTab = this.hasPreviewLocalStorage || this.hasPreviewUrlParam;
+                    this.bottomPosition = !0;
+                    this.isDebuggerEnabled = !1;
+                    this.debuggerDomain = ""
+                }
+                async scheduleUpdate() {
+                    await new Promise(a => setTimeout(a));
+                    super.scheduleUpdate()
+                }
+                connectedCallback() {
+                    super.connectedCallback();
+                    this.debuggerDomain = this.getAttribute("debuggerDomain") || "";
+                    this.isDebuggerEnabled = "true" === this.getAttribute("isDebuggerEnabled")
+                }
+                render() {
+                    var a = O`<aside>
+            <img
+                src=${this.bottomPosition ? "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYXJyb3ctdXAtcmlnaHQiPjxsaW5lIHgxPSI3IiB5MT0iMTciIHgyPSIxNyIgeTI9IjciPjwvbGluZT48cG9seWxpbmUgcG9pbnRzPSI3IDcgMTcgNyAxNyAxNyI+PC9wb2x5bGluZT48L3N2Zz4\x3d" : "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJmZWF0aGVyIGZlYXRoZXItYXJyb3ctZG93bi1yaWdodCI+PGxpbmUgeDE9IjciIHkxPSI3IiB4Mj0iMTciIHkyPSIxNyI+PC9saW5lPjxwb2x5bGluZSBwb2ludHM9IjE3IDcgMTcgMTcgNyAxNyI+PC9wb2x5bGluZT48L3N2Zz4\x3d"}
+                @click=${this._changePositionHandler}
+                alt="\u041f\u043e\u043c\u0435\u043d\u044f\u0442\u044c \u043f\u043e\u043b\u043e\u0436\u0435\u043d\u0438\u0435"
+            />
+            <h1>\u0427\u0435\u0440\u043d\u043e\u0432\u0438\u043a CleverData Tag Manager</h1>
+            <div class="description">
+                <p>\u0427\u0435\u0440\u043d\u043e\u0432\u0438\u043a \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d</p>
+                ${this.isDebuggerEnabled ? O`<p>\u041f\u043e\u043c\u043e\u0449\u043d\u0438\u043a \u043f\u043e \u0442\u0435\u0433\u0430\u043c \u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d</p>` : ""}
+            </div>
+            <div class="footer">
+                <button class="primary" @click=${this._onDenyHandler} part="button">\u0417\u0430\u0432\u0435\u0440\u0448\u0438\u0442\u044c \u0441\u0435\u0430\u043d\u0441</button>
+            </div>
+        </aside>`;
+                    const b = O`<style>
+                :host {
+                    top: 32px;
+                    bottom: auto;
+                }
+            </style>
+            ${a}`;
+                    a = O`<style>
+                :host {
+                    top: auto;
+                    bottom: 32px;
+                }
+            </style>
+            ${a}`;
+                    return this.showPreviewTab ? this.bottomPosition ? a : b : null
+                }
+                _changePositionHandler() {
+                    this.bottomPosition = !this.bottomPosition
+                }
+                _onDenyHandler() {
+                    let a = null;
+                    localStorage.removeItem(this.tcPreviewKey);
+                    this.isDebuggerEnabled && window.opener.postMessage(JSON.stringify({
+                        errorType: "END_SESSION"
+                    }), this.debuggerDomain);
+                    this.hasPreviewUrlParam && (a = this._getUrlWithDeleteParam());
+                    a ? document.location.replace(a) : document.location.reload()
+                }
+                _getPreviewUrlParam() {
+                    return (new URLSearchParams(window.location.search)).get(this.tcPreviewKey)
+                }
+                _getUrlWithDeleteParam() {
+                    const a = new URL(window.location.toString());
+                    return !!a.searchParams.get(this.tcPreviewKey) && a.searchParams.delete(this.tcPreviewKey),
+                    a
+                }
+            }
+            ,
+            g.CDJTmPreviewBadgeElement.styles = ( (a, ...b) => {
+                b = 1 === a.length ? a[0] : b.reduce( (c, e, p) => {
+                    if (!0 === e._$cssResult$)
+                        e = e.cssText;
+                    else if ("number" != typeof e)
+                        throw Error("Value passed to 'css' function must be a 'css' function result: " + e + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
+                    return c + e + a[p + 1]
+                }
+                , a[0]);
+                return new v(b,a,k)
+            }
+            )`
+        :host {
+            z-index: 100000000;
+            text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizelegibility;
+            box-sizing: border-box;
+            position: fixed;
+            right: 32px;
+            width: 400px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+            font-family: Manrope, Roboto, -apple-system, 'Segoe UI', Arial, sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            color: #253858;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        aside {
+            position: relative;
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 18px;
+            background-color: #edf2f7;
+            padding: 12px 16px;
+            margin: 0;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .description {
+            box-sizing: border-box;
+            padding: 20px 16px 20px 16px;
+            font-size: 16px;
+        }
+
+        .footer {
+            box-sizing: border-box;
+            background-color: #edf2f7;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 5px 16px 5px 16px;
+            border-radius: 0 0 8px 8px;
+        }
+
+        img {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            width: 25px;
+            height: 25px;
+        }
+
+        img:hover {
+            cursor: pointer;
+        }
+
+        button {
+            border-radius: 4px;
+            border: none;
+            background: none;
+            color: #5e6c84;
+            padding: 8px 12px;
+            font-weight: 600;
+            border: 0;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        button:hover {
+            cursor: pointer;
+        }
+
+        button.primary {
+            color: #fff;
+            background-color: #04a87e;
+        }
+
+        button.primary:hover {
+            background-color: #0a9773;
+        }
+
+        p {
+            margin: 10px 0 10px 0;
+        }
+    `,
+            U([f({
+                type: Boolean
+            })], g.CDJTmPreviewBadgeElement.prototype, "showPreviewTab", 2),
+            U([f({
+                type: Boolean
+            })], g.CDJTmPreviewBadgeElement.prototype, "bottomPosition", 2),
+            U([f({
+                type: Boolean
+            })], g.CDJTmPreviewBadgeElement.prototype, "isDebuggerEnabled", 2),
+            U([f({
+                type: String
+            })], g.CDJTmPreviewBadgeElement.prototype, "debuggerDomain", 2),
+            g.CDJTmPreviewBadgeElement = U([(a => b => "function" == typeof b ? ( (c, e) => (customElements.define(c, e),
+            e))(a, b) : ( (c, e) => {
+                const {kind: p, elements: A} = e;
+                return {
+                    kind: p,
+                    elements: A,
+                    finisher(F) {
+                        customElements.define(c, F)
+                    }
+                }
+            }
+            )(a, b))("cdj-tm-preview-badge")], g.CDJTmPreviewBadgeElement),
+            Object.defineProperty(g, Symbol.toStringTag, {
+                value: "Module"
+            }),
+            g
+        }
+        )({});
+        var va = document.createElement("cdj-tm-preview-badge");
+        va.setAttribute("isDebuggerEnabled", "true");
+        va.setAttribute("debuggerDomain", "https://my.services.dmpkit/");
+        console.log("Debugger mode is enabled!");
+        document.querySelector("body").appendChild(va);
+        var ya = function() {
+            var g, n = {};
+            if (g = (I.currentScript || I.querySelector('script[src*\x3d"tm.js?id\x3d385f6ff2-1c16-45d2-872e-818e294ad8c1"]')).src) {
+                var f = g.replace(/^[^\?]+\??/, "").split("\x26");
+                for (var q = 0; q < f.length; q++)
+                    g = f[q].split("\x3d"),
+                    2 == g.length && (n[g[0]] = decodeURIComponent(g[1]))
+            }
+            return n
+        }();
+        var Ma = function() {
+            for (var g = "", n = 0; 32 > n; n++)
+                switch (n) {
+                case 8:
+                case 20:
+                    g += "-";
+                    g += (16 * Math.random() | 0).toString(16);
+                    break;
+                case 12:
+                    g += "-";
+                    g += "4";
+                    break;
+                case 16:
+                    g += "-";
+                    g += (4 * Math.random() | 8).toString(16);
+                    break;
+                default:
+                    g += (16 * Math.random() | 0).toString(16)
+                }
+            return g
+        };
+        var Na = function() {
+            var g = {
+                TYPE_RE_: /\[object (Boolean|Number|String|Function|Array|Date|RegExp)\]/,
+                type: function(f) {
+                    return null == f ? String(f) : (f = g.TYPE_RE_.exec(Object.prototype.toString.call(Object(f)))) ? f[1].toLowerCase() : "object"
+                },
+                hasOwn: function(f, q) {
+                    return Object.prototype.hasOwnProperty.call(Object(f), q)
+                },
+                isPlainObject: function(f) {
+                    if (!f || "object" != g.type(f) || f.nodeType || f == f.window)
+                        return !1;
+                    try {
+                        if (f.constructor && !g.hasOwn(f, "constructor") && !g.hasOwn(f.constructor.prototype, "isPrototypeOf"))
+                            return !1
+                    } catch (h) {
+                        return !1
+                    }
+                    for (var q in f)
+                        ;
+                    return void 0 === q || g.hasOwn(f, q)
+                }
+            }
+              , n = {
+                DataLayerHelper: function(f, q, h) {
+                    this.dataLayer_ = f;
+                    this.listener_ = q || function() {}
+                    ;
+                    this.executingListener_ = !1;
+                    this.model_ = {};
+                    this.unprocessed_ = [];
+                    this.abstractModelInterface_ = n.buildAbstractModelInterface_(this);
+                    this.processStates_(f, !h);
+                    var k = f.push
+                      , t = this;
+                    f.push = function() {
+                        var v = [].slice.call(arguments, 0)
+                          , N = k.apply(f, v);
+                        return t.processStates_(v),
+                        N
+                    }
+                }
+            };
+            n.DataLayerHelper.prototype.get = function(f) {
+                var q = this.model_;
+                f = f.split(".");
+                for (var h = 0; h < f.length; h++) {
+                    if (void 0 === q[f[h]])
+                        return;
+                    q = q[f[h]]
+                }
+                return q
+            }
+            ;
+            n.DataLayerHelper.prototype.flatten = function() {
+                this.dataLayer_.splice(0, this.dataLayer_.length);
+                this.dataLayer_[0] = {};
+                n.merge_(this.model_, this.dataLayer_[0])
+            }
+            ;
+            n.DataLayerHelper.prototype.processStates_ = function(f, q) {
+                for (this.unprocessed_.push.apply(this.unprocessed_, f); !1 === this.executingListener_ && 0 < this.unprocessed_.length; ) {
+                    f = this.unprocessed_.shift();
+                    if (n.isArray_(f))
+                        n.processCommand_(f, this.model_);
+                    else if ("function" == typeof f)
+                        try {
+                            f.call(this.abstractModelInterface_)
+                        } catch (k) {}
+                    else {
+                        if (!g.isPlainObject(f))
+                            continue;
+                        for (var h in f)
+                            n.merge_(n.expandKeyValue_(h, f[h]), this.model_)
+                    }
+                    q || (this.executingListener_ = !0,
+                    this.listener_(this.model_, f),
+                    this.executingListener_ = !1)
+                }
+            }
+            ;
+            n.buildAbstractModelInterface_ = function(f) {
+                return {
+                    set: function(q, h) {
+                        n.merge_(n.expandKeyValue_(q, h), f.model_)
+                    },
+                    get: function(q) {
+                        return f.get(q)
+                    }
+                }
+            }
+            ;
+            n.processCommand_ = function(f, q) {
+                if (n.isString_(f[0])) {
+                    var h = f[0].split(".")
+                      , k = h.pop();
+                    f = f.slice(1);
+                    for (var t = 0; t < h.length; t++) {
+                        if (void 0 === q[h[t]])
+                            return;
+                        q = q[h[t]]
+                    }
+                    try {
+                        q[k].apply(q, f)
+                    } catch (v) {}
+                }
+            }
+            ;
+            n.expandKeyValue_ = function(f, q) {
+                var h = {}
+                  , k = h;
+                f = f.split(".");
+                for (var t = 0; t < f.length - 1; t++)
+                    k = k[f[t]] = {};
+                return k[f[f.length - 1]] = q,
+                h
+            }
+            ;
+            n.isArray_ = function(f) {
+                return "array" == g.type(f)
+            }
+            ;
+            n.isString_ = function(f) {
+                return "string" == g.type(f)
+            }
+            ;
+            n.merge_ = function(f, q) {
+                for (var h in f)
+                    if (g.hasOwn(f, h)) {
+                        var k = f[h];
+                        n.isArray_(k) ? (n.isArray_(q[h]) || (q[h] = []),
+                        n.merge_(k, q[h])) : g.isPlainObject(k) ? (g.isPlainObject(q[h]) || (q[h] = {}),
+                        n.merge_(k, q[h])) : q[h] = k
+                    }
+            }
+            ;
+            return n.DataLayerHelper
+        }();
+        var ea = function(g, n) {
+            var f = function(q) {
+                if ("object" !== typeof q.document)
+                    throw Error("Cookies.js requires a `window` with a `document` object");
+                var h = function(k, t, v) {
+                    return 1 === arguments.length ? h.get(k) : h.set(k, t, v)
+                };
+                h._document = q.document;
+                h._cacheKeyPrefix = "cookey.";
+                h._maxExpireDate = new Date("Fri, 31 Dec 9999 23:59:59 UTC");
+                h.defaults = {
+                    path: "/",
+                    secure: !1
+                };
+                h.get = function(k) {
+                    h._cachedDocumentCookie !== h._document.cookie && h._renewCache();
+                    k = h._cache[h._cacheKeyPrefix + k];
+                    return k === n ? n : decodeURIComponent(k)
+                }
+                ;
+                h.set = function(k, t, v) {
+                    v = h._getExtendedOptions(v);
+                    v.expires = h._getExpiresDate(t === n ? -1 : v.expires);
+                    h._document.cookie = h._generateCookieString(k, t, v);
+                    return h
+                }
+                ;
+                h.expire = function(k, t) {
+                    return h.set(k, n, t)
+                }
+                ;
+                h._getExtendedOptions = function(k) {
+                    return {
+                        path: k && k.path || h.defaults.path,
+                        domain: k && k.domain || h.defaults.domain,
+                        expires: k && k.expires || h.defaults.expires,
+                        secure: k && k.secure !== n ? k.secure : h.defaults.secure
+                    }
+                }
+                ;
+                h._isValidDate = function(k) {
+                    return "[object Date]" === Object.prototype.toString.call(k) && !isNaN(k.getTime())
+                }
+                ;
+                h._getExpiresDate = function(k, t) {
+                    t = t || new Date;
+                    "number" === typeof k ? k = Infinity === k ? h._maxExpireDate : new Date(t.getTime() + 1E3 * k) : "string" === typeof k && (k = new Date(k));
+                    if (k && !h._isValidDate(k))
+                        throw Error("`expires` parameter cannot be converted to a valid Date instance");
+                    return k
+                }
+                ;
+                h._generateCookieString = function(k, t, v) {
+                    k = k.replace(/[^#$&+\^`|]/g, encodeURIComponent);
+                    k = k.replace(/\(/g, "%28").replace(/\)/g, "%29");
+                    t = (t + "").replace(/[^!#$&-+\--:<-\[\]-~]/g, encodeURIComponent);
+                    v = v || {};
+                    k = k + "\x3d" + t + (v.path ? ";path\x3d" + v.path : "");
+                    k += v.domain ? ";domain\x3d" + v.domain : "";
+                    k += v.expires ? ";expires\x3d" + v.expires.toUTCString() : "";
+                    return k += v.secure ? ";secure" : ""
+                }
+                ;
+                h._getCacheFromString = function(k) {
+                    var t = {};
+                    k = k ? k.split("; ") : [];
+                    for (var v = 0; v < k.length; v++) {
+                        var N = h._getKeyValuePairFromCookieString(k[v]);
+                        t[h._cacheKeyPrefix + N.key] === n && (t[h._cacheKeyPrefix + N.key] = N.value)
+                    }
+                    return t
+                }
+                ;
+                h._getKeyValuePairFromCookieString = function(k) {
+                    var t = k.indexOf("\x3d");
+                    t = 0 > t ? k.length : t;
+                    var v = k.substr(0, t);
+                    try {
+                        var N = decodeURIComponent(v)
+                    } catch (X) {
+                        console && "function" === typeof console.error && console.error('Could not decode cookie with key "' + v + '"', X)
+                    }
+                    return {
+                        key: N,
+                        value: k.substr(t + 1)
+                    }
+                }
+                ;
+                h._renewCache = function() {
+                    h._cache = h._getCacheFromString(h._document.cookie);
+                    h._cachedDocumentCookie = h._document.cookie
+                }
+                ;
+                h._areEnabled = function() {
+                    var k = "1" === h.set("cookies.js", 1).get("cookies.js");
+                    h.expire("cookies.js");
+                    return k
+                }
+                ;
+                h.enabled = h._areEnabled();
+                return h
+            };
+            return g && "object" === typeof g.document ? f(g) : f
+        }("undefined" === typeof G ? this : G);
+        ra.prototype = {
+            SW: function(g) {
+                return this.value.slice(0, g.length) == g.toUpperCase()
+            },
+            EW: function(g) {
+                return "" == g || this.value.slice(-g.length) == g.toUpperCase()
+            },
+            EQ: function(g) {
+                return this.value == g.toUpperCase()
+            },
+            RE: function(g) {
+                return (new RegExp(g,"i")).test(this.value)
+            },
+            CONTAINS: function(g) {
+                return 0 <= this.value.indexOf(g.toUpperCase())
+            }
+        };
+        la.prototype.getQueryParams = function() {
+            for (var g = [], n, f, q = this.w.location.search.substr(1).split("\x26"), h = 0; h < q.length; h++) {
+                n = q[h].split("\x3d");
+                g.push(n[0]);
+                try {
+                    f = decodeURIComponent(n[1])
+                } catch (k) {
+                    f = !1
+                }
+                g[n[0]] = f
+            }
+            return g
+        }
+        ;
+        la.prototype.getProtocol = function() {
+            return this.w.location.protocol.slice(0, -1)
+        }
+        ;
+        la.prototype.getQueryString = function() {
+            return this.w.location.search.substr(1)
+        }
+        ;
+        var Oa = {
+            DOM: function(g) {
+                var n;
+                if (g.id && (n = I.getElementById(g.id)))
+                    return g.attr ? n.getAttribute(g.attr) : n.text
+            },
+            CSS: function(g) {
+                var n;
+                if (g.css && (n = I.querySelector(g.css)))
+                    return g.attr ? n.getAttribute(g.attr) : n.text
+            },
+            Const: function(g) {
+                return g.val
+            },
+            Referrer: function(g) {
+                return I.referrer
+            },
+            URL: function(g) {
+                var n = g.defaultValue
+                  , f = new la(G);
+                switch (g.type) {
+                case "url":
+                    return G.location.href;
+                case "protocol":
+                    return f.getProtocol();
+                case "hostname":
+                    return G.location.hostname;
+                case "port":
+                    return (n = G.location.port) ? n : "http" == f.getProtocol() ? "80" : "443";
+                case "uri":
+                    return G.location.pathname;
+                case "query":
+                    return (g = g.queryKey) ? (f = f.getQueryParams()[g],
+                    null != f ? f : n) : (f = f.getQueryString()) ? f : n;
+                case "anchor":
+                    return G.location.hash;
+                default:
+                    return n
+                }
+            },
+            Cookie: function(g) {
+                return ea.get(g.name)
+            },
+            DL: function(g) {
+                return _DMPKit["385f6ff2-1c16-45d2-872e-818e294ad8c1"].dataLayer.get(g.key)
+            },
+            JavaScriptGlobalVariable: function(g) {
+                return G[g.name]
+            },
+            JavaScriptFunction: function(g) {
+                try {
+                    return Function("return (" + g.js + ")()")()
+                } catch (n) {
+                    return g.defaultValue
+                }
+            }
+        };
+        (function() {
+          function g(d) {
+    if (!(d instanceof Element)) return "";
+
+    var m = [];
+    var l = d.constructor.name;
+    var r = d.nodeName.toLowerCase();
+
+    while (d) {
+        var w = r;
+
+        if (d.id) {
+            w += "#" + d.id;
+            m.unshift(w);
+            break;
+        } else {
+            if (d.className) {
+                var classes = Array.from(d.classList).join(".");
+                w += "." + classes;
+            }
+
+            if (d.parentNode) { // Проверяем наличие родителя
+                var siblings = Array.from(d.parentNode.children);
+                var sameTagSiblings = siblings.filter(sibling => sibling.nodeName === d.nodeName);
+
+                if (sameTagSiblings.length > 1) {
+                    w += ":nth-of-type(" + (sameTagSiblings.indexOf(d) + 1) + ")";
+                }
+                m.unshift(w);
+                d = d.parentNode;
+            } else {
+                break; // Выходим из цикла, если родителя нет
+            }
+        }
+    }
+
+    return l + ": " + m.join(" > "); // Возвращаем результат
+}
+            function n(d, m) {
+                void 0 === m && (m = []);
+                if (null === d)
+                    return null;
+                if ("object" !== typeof d)
+                    return d;
+                for (var l = 0; l < m.length; l++)
+                    if (m[l] === d)
+                        return "[Circular]";
+                m.push(d);
+                if (Array.isArray(d)) {
+                    var r = [];
+                    for (l = 0; l < d.length; l++)
+                        r.push(n(d[l], m));
+                    return r
+                }
+                l = {};
+                for (r in d)
+                    d.hasOwnProperty(r) && (l[r] = d[r]instanceof Element ? g(d[r]) : f(d[r]) || n(d[r], m));
+                return l
+            }
+            function f(d) {
+                if (d instanceof SVGAnimatedString)
+                    return "type: 'SVGAnimatedString', animVal: '" + d.animVal + "', baseVal: '" + d.baseVal + "'";
+                if (d instanceof File)
+                    return "type: 'File', name: '" + d.name + "', size: " + d.size + ", type: '" + d.type + "'";
+                if (d instanceof DOMTokenList) {
+                    for (var m = [], l = 0; l < d.length; l++)
+                        m.push("'" + d[l] + "'");
+                    return "type: 'DOMTokenList', tokens: [" + m.join(", ") + "]"
+                }
+                if (d instanceof CSSStyleDeclaration) {
+                    m = {};
+                    for (var r = 0; r < d.length; r++) {
+                        var w = d[r];
+                        m[w] = "'" + d.getPropertyValue(w) + "'"
+                    }
+                    d = [];
+                    for (l in m)
+                        m.hasOwnProperty(l) && d.push(l + ": " + m[l]);
+                    return "type: 'CSSStyleDeclaration', styles: { " + d.join(", ") + " }"
+                }
+                if (d instanceof HTMLCollection || d instanceof NodeList) {
+                    m = [];
+                    for (l = 0; l < d.length; l++)
+                        m.push(g(d[l]));
+                    return "type: 'Collection', length: " + d.length + ", items: [" + m.join(", ") + "]"
+                }
+                return null
+            }
+            function q(d) {
+                if (Array.isArray(d)) {
+                    for (var m = [], l = 0; l < d.length; l++)
+                        m.push(q(d[l]));
+                    return m
+                }
+                if ("object" === typeof d && null !== d) {
+                    m = {};
+                    for (l in d)
+                        d.hasOwnProperty(l) && (m[l] = d[l]instanceof Element ? g(d[l]) : q(d[l]));
+                    return m
+                }
+                return d
+            }
+            function h(d) {
+                if (Array.isArray(d)) {
+                    for (var m = [], l = 0; l < d.length; l++)
+                        m.push(h(d[l]));
+                    return m
+                }
+                if (null !== d && "object" === typeof d) {
+                    m = {};
+                    for (l in d)
+                        d.hasOwnProperty(l) && (m[l] = h(d[l]));
+                    return m
+                }
+                return void 0 === d ? "undefined" : d
+            }
+            function k(d, m) {
+                d = q(n(d));
+                const l = h(q(n(L)))
+                  , r = h(q(n(S)));
+                window.opener.postMessage(JSON.stringify({
+                    event: d,
+                    activatedTags: m || [],
+                    variables: l,
+                    dataLayer: r
+                }), "https://my.services.dmpkit/")
+            }
+            function t() {
+                if (!ia) {
+                    ia = !0;
+                    for (var d = 0, m = aa.length; d < m; d++)
+                        aa[d]()
+                }
+            }
+            function v() {
+                if (!na) {
+                    na = !0;
+                    for (var d = 0, m = Y.length; d < m; d++)
+                        Y[d]()
+                }
+                window.opener.postMessage(JSON.stringify({
+                    pageInfo: {
+                        title: document.title || ""
+                    }
+                }), "https://my.services.dmpkit/")
+            }
+            function N(d, m) {
+                if (m.srcElement)
+                    var l = m.srcElement;
+                else
+                    m.target && (l = m.target);
+                m = {
+                    "tm.element": l,
+                    "tm.elementClass": l.className,
+                    "tm.elementId": l.id,
+                    "tm.elementName": l.name,
+                    "tm.text": l.textContent || l.value,
+                    "tm.title": l.title,
+                    "tm.elementType": l.type,
+                    "tm.tagName": l.tagName
+                };
+                switch (d) {
+                case "CLICK":
+                    m.event = "tm.click";
+                    break;
+                case "SUBMIT":
+                    m.event = "tm.submit"
+                }
+                L.push(m)
+            }
+            function X(d) {
+                var m = I.body;
+                switch (d) {
+                case "CLICK":
+                    var l = "click";
+                    var r = function(w) {
+                        N(d, w)
+                    };
+                    break;
+                case "SUBMIT":
+                    l = "submit",
+                    r = function(w) {
+                        N(d, w)
+                    }
+                }
+                K(m, l, r, !0)
+            }
+            function P(d) {
+                try {
+                    if (0 < d.length) {
+                        var m = d.shift();
+                        if ("SCRIPT" == String(m.nodeName).toUpperCase()) {
+                            var l = I.createElement("script");
+                            l.async = !1;
+                            l.type = "text/javascript";
+                            l.id = m.id;
+                            l.text = m.text || m.textContent || m.innerHTML || "";
+                            m.charset && (l.charset = m.charset);
+                            I.body.insertBefore(l, null)
+                        }
+                        P(d)
+                    }
+                } catch (r) {
+                    console.log(r)
+                }
+            }
+            function K(d, m, l, r) {
+                d.addEventListener ? d.addEventListener(m, l, !!r) : d.attachEvent && d.attachEvent("on" + m, l)
+            }
+            var H = ya.l ? G[ya.l] : G.dmpkitdl, L = [], aa = [], Y = [], fa = {
+                1: ["PageTitle", "CSS", {
+                    css: "title"
+                }],
+                2: ["PageKeywords", "CSS", {
+                    css: "meta[name\x3d'keywords']",
+                    attr: "content"
+                }],
+                3: ["PageDescription", "CSS", {
+                    css: "meta[name\x3d'description']",
+                    attr: "content"
+                }],
+                4: ["PageReferrer", "Referrer"],
+                5: ["PageURL", "URL", {
+                    type: "url"
+                }],
+                6: ["ClickElement", "DL", {
+                    key: "tm.element"
+                }],
+                7: ["ClickElementID", "DL", {
+                    key: "tm.elementId"
+                }],
+                8: ["ClickElementClass", "DL", {
+                    key: "tm.elementClass"
+                }],
+                9: ["ClickElementName", "DL", {
+                    key: "tm.elementName"
+                }],
+                10: ["ClickText", "DL", {
+                    key: "tm.text"
+                }],
+                11: ["ClickElementType", "DL", {
+                    key: "tm.elementType"
+                }],
+                12: ["ClickElementTagName", "DL", {
+                    key: "tm.tagName"
+                }],
+                13: ["ClickTitle", "DL", {
+                    key: "tm.title"
+                }],
+                14: ["FormElement", "DL", {
+                    key: "tm.element"
+                }],
+                15: ["FormElementID", "DL", {
+                    key: "tm.elementId"
+                }],
+                16: ["FormElementClass", "DL", {
+                    key: "tm.elementClass"
+                }],
+                17: ["FormElementName", "DL", {
+                    key: "tm.elementName"
+                }],
+                22: ["FirstPartyCookie", "Cookie", {
+                    name: "___dmpkit___"
+                }],
+                648: ["siteloadfunc", "JavaScriptFunction", {
+                    defaultValue: "",
+                    js: "function () {\n  console.log('Site load!')\n  return \"Site load\";\n}\n"
+                }]
+            }, ha = {
+                1773: "\x3cscript\x3e\n// Your Code Here \ud83d\udc47\n  console.log('click: ', _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('ClickElementName'))\n\x3c/script\x3e",
+                1774: "\x3cscript\x3e(function () {new Image().src \x3d 'https://auth.cdp.cleverdata.ru/resources/y6tag/login/cleverdata-dmpkit-keycloak-login-theme/build/favicon.svg'})();\x3c/script\x3e",
+                1775: "\x3cscript\x3e\n// Your Code Here \ud83d\udc47\nconsole.log('DOM ready!');\n\x3c/script\x3e",
+                1780: "\x3cscript\x3e\n// Your Code Here \ud83d\udc47\n  console.log('Form load!')\n\x3c/script\x3e",
+                1776: "\x3cscript\x3e\n  console.log('my message')\n\n\x3c/script\x3e",
+                1777: "\x3cscript\x3e\n// Your Code Here \ud83d\udc47\nconsole.log('hello')\n\x3c/script\x3e",
+                1781: "\x3cscript\x3e\n// Your Code Here \ud83d\udc47\n    console.log('regex tag')\n\x3c/script\x3e",
+                1778: "\x3cscript\x3e\n// Your Code Here \ud83d\udc47\n  _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('siteloadfunc')\n\x3c/script\x3e",
+                1779: "\x3cscript\x3e (function () { var tracker \x3d _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'], pageTitle \x3d _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('PageTitle'), pageKeyWords \x3d _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('PageKeywords'), pageDescription \x3d _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('PageDescription'), pageReferrer \x3d _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('PageReferrer'), pageURL \x3d _DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('PageURL'), ecommerce\x3d_DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('ecommerce'); data\x3d{}; if (ecommerce) { data[\"ecommerce\"] \x3d ecommerce; data[\"meta\"] \x3d {}; if (pageKeyWords) { data[\"meta\"][\"pageKeyWords\"] \x3d pageKeyWords; } if (pageDescription) { data[\"meta\"][\"pageDescription\"] \x3d pageDescription; } if (pageReferrer) { data[\"meta\"][\"pageReferrer\"] \x3d pageReferrer; } if (pageURL) { data[\"meta\"][\"pageURL\"] \x3d pageURL; } tracker.send(_DMPKit['385f6ff2-1c16-45d2-872e-818e294ad8c1'].dataLayer.get('event'), 'ecommerce', data, 'ecomm'); } })(); \x3c/script\x3e"
+            }, V = {
+                577: ["1773"],
+                578: ["1774"],
+                579: ["1775"],
+                580: ["1779"],
+                581: ["1776"],
+                582: ["1777", "1780"],
+                583: ["1778"],
+                584: ["1781"]
+            }, Q = [["582", "tm.submit", "EQ"], ["579", "tm.dom", "SW"], ["584", "tm.regex", "RE"], ["583", "tm.load", "EQ"], ["581", "'message'", "CONTAINS"], ["580", "tm.error", "SW"], ["577", "tm.click", "SW"], ["578", "tm.click", "SW"]], ma = {
+                578: [["1", "SW", "Vite + React + TS"]]
+            }, M = [], ia = !1, na = !1, T, W;
+            var S = new Na(L);
+            H.push({
+                event: "tm.init"
+            });
+            aa.push(function() {
+                var d = Ma();
+                if (!ea.get("___dmpkit___")) {
+                    for (var m = [], l = 0; 14 > l; l++)
+                        "." == ".www.domain.ru"[l] && m.push(l);
+                    for (l = m.length - 2; 0 <= l; l--) {
+                        var r = ".www.domain.ru".substring(m[l]);
+                        ea.set("___dmpkit___", d, {
+                            expires: 15768E5,
+                            domain: r
+                        });
+                        if (ea.get("___dmpkit___"))
+                            break
+                    }
+                }
+            }, function() {
+                H.push({
+                    event: "tm.dom"
+                });
+                X("CLICK");
+                X("SUBMIT")
+            });
+            Y.push(function() {
+                H.push({
+                    event: "tm.load"
+                })
+            });
+            "interactive" == I.readyState && !I.createEventObject || "complete" == I.readyState ? t() : (K(I, "DOMContentLoaded", t),
+            K(I, "readystatechange", t),
+            K(G, "load", t));
+            "complete" === I.readyState ? v() : K(G, "load", v);
+            return {
+                start: function() {
+                    _DMPKit["385f6ff2-1c16-45d2-872e-818e294ad8c1"] = {
+                        dataLayer: S,
+                        send: Aa
+                    };
+                    T = H.push;
+                    H.push = function() {
+                        var d = [].slice.call(arguments, 0);
+                        for (T.apply(H, d); 300 < this.length; )
+                            this.shift();
+                        L.push.apply(L, d)
+                    }
+                    ;
+                    W = L.push;
+                    L.push = function() {
+                        for (var d = [].slice.call(arguments, 0), m, l = 0; l < d.length; l++)
+                            if (m = d[l],
+                            W.call(L, m),
+                            m.event) {
+                                M.push.call(M, m);
+                                for (var r, w, D; 0 < M.length; ) {
+                                    w = M.shift().event;
+                                    D = void 0;
+                                    var x = fa;
+                                    for (D in x)
+                                        if (x.hasOwnProperty(D)) {
+                                            var C = x[D];
+                                            var O = C[0];
+                                            var B = Oa[C[1]];
+                                            r = C[2];
+                                            B && "function" === typeof B && (C = {},
+                                            C[O] = B(r),
+                                            L.push(C))
+                                        }
+                                    D = w;
+                                    w = [];
+                                    for (B = 0; B < Q.length; B++)
+                                        O = Q[B][0],
+                                        x = Q[B][1],
+                                        r = Q[B][2],
+                                        C = new ra(D),
+                                        (r = C[r]) && r.call(C, x) && w.push(O);
+                                    D = [];
+                                    if (w)
+                                        for (B = 0,
+                                        O = w.length; B < O; B++) {
+                                            a: {
+                                                var y;
+                                                if (x = ma[w[B]])
+                                                    for (C = 0,
+                                                    r = x.length; C < r; C++)
+                                                        if (y = fa[x[C][0]]) {
+                                                            y = S.get(y[0]);
+                                                            if (!y) {
+                                                                x = !1;
+                                                                break a
+                                                            }
+                                                            var ja = new ra(y);
+                                                            y = ja[x[C][1]];
+                                                            if (!y || !y.call(ja, x[C][2])) {
+                                                                x = !1;
+                                                                break a
+                                                            }
+                                                        }
+                                                x = !0
+                                            }
+                                            x && D.push(w[B])
+                                        }
+                                    B = 0;
+                                    for (O = D.length; B < O; B++)
+                                        if (w = V[D[B]]) {
+                                            x = 0;
+                                            for (C = w.length; x < C; x++)
+                                                if (r = ha[w[x]]) {
+                                                    if (y = r) {
+                                                        r = I.createElement("div");
+                                                        r.innerHTML = y;
+                                                        for (y = []; r.firstChild; )
+                                                            y.push(r.removeChild(r.firstChild));
+                                                        r = y
+                                                    } else
+                                                        r = void 0;
+                                                    P(r)
+                                                }
+                                            k(m, w)
+                                        }
+                                    0 === D.length && k(m)
+                                }
+                            }
+                        for (; 300 < this.length; )
+                            this.shift()
+                    }
+                    ;
+                    L.push.apply(L, H)
+                }
+            }
+        }
+        )().start()
+    }
+}
+)(window, document);
+
   })(window, document, 'script', 'dmpkitdl', '385f6ff2-1c16-45d2-872e-818e294ad8c1', 'static.services.dmpkit');
 </script>
 <!-- End DMPKit Tag Manager -->
